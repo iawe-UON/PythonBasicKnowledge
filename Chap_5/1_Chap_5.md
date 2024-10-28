@@ -56,7 +56,6 @@ n = np.arange(1,10,2,dtype=int)
 n1 = np.linspace(1,20,5)
 #创建等比数组
 n2 = np.logspace(1,100,30)
-
 ```
 
 ### 多维数组切片
@@ -168,12 +167,12 @@ DataFrame是pandas中最常见的数据储存结构，可以把它当作无数�
 ```python
 import pandas as pd
 
-data = [['Google', 10], ['Runoob', 12], ['Wiki', 13]]
+data = [['Google', 10], ['Yahoo', 12], ['Wiki', 13]]
 
 # 创建DataFrame
 df = pd.DataFrame(data, columns=['Site', 'Age'])
 
-# 使用astype方法设置每列的数据类型
+# 使用astype方法设置每列Series的数据类型
 df['Site'] = df['Site'].astype(str)
 df['Age'] = df['Age'].astype(float)
 
@@ -181,14 +180,14 @@ print(df)
 #结果：
      Site   Age
 0  Google  10.0
-1  Runoob  12.0
+1   Yahoo  12.0
 2    Wiki  13.0
 ```
 
 ```python
 import pandas as pd
 
-data = {'Site':['Google', 'Runoob', 'Wiki'], 'Age':[10, 12, 13]}
+data = {'Site':['Google', 'Yahoo', 'Wiki'], 'Age':[10, 12, 13]}
 
 df = pd.DataFrame(data)
 
@@ -204,7 +203,7 @@ import pandas as pd
 # 创建一个包含网站和年龄的二维ndarray
 ndarray_data = np.array([
     ['Google', 10],
-    ['Runoob', 12],
+    ['Yahoo', 12],
     ['Wiki', 13]
 ])
 
@@ -216,7 +215,7 @@ print(df)
 #结果：
      Site Age
 0  Google  10
-1  Runoob  12
+1   Yahoo  12
 2    Wiki  13
 ```
 
@@ -232,11 +231,11 @@ df = pd.DataFrame({'Name': s1, 'Age': s2, 'City': s3})
 
 ```python
 # 索引和切片
-print(df[['Name', 'Age']])  # 提取多列
+print(df[['Name','Age']])  # 提取多列
 print(df[1:3])               # 切片行
-print(df.loc[:, 'Name'])     # 提取单列
-print(df.loc[1:2, ['Name', 'Age']])  # 标签索引提取指定行列
-print(df.iloc[:, 1:])        # 位置索引提取指定列
+print(df.loc[:,'Name'])     # 提取单列
+print(df.loc[1:2,['Name','Age']])  # 标签索引提取指定行列
+print(df.iloc[:,1:])        # 位置索引提取指定列
 ```
 
 ### 数据清洗

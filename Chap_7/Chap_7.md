@@ -24,6 +24,7 @@ import torch.utils.data as data
 feature,label = datasets.load_diabetes(return_X_y=True)#featrue(442,10),lable(442)
 feature = torch.tensor(feature,dtype=torch.float32)
 label = torch.tensor(label,dtype=torch.float32).unsqueeze(1)
+
 #建立数据迭代器
 def load_array(data_array,batch_size,is_Training=True):
     dataset = data.TensorDataset(*data_array)
@@ -64,8 +65,8 @@ train = torch.optim.SGD(net.parameters(),lr=lr)
 
 for epoch in range(epochs):
     for X,y in data_iter:
-        l=Loss(net(X),y)
         train.zero_grad()
+        l=Loss(net(X),y)
         l.sum().backward()
         train.step()
     l=Loss(net(feature[-42:,:]),label[-42:])

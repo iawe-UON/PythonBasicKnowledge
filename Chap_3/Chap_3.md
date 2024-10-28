@@ -51,15 +51,12 @@ print(ans)
 python函数在定义后，调用函数时（）内的参数必须按照顺序全部传递进函数，漏传或者没有按照顺序传递会报错或者出现错误答案。
 
 ```python
-#可写函数说明
-def printme( str1，str2 ):
-#  打印任何传入的字符串 
+def printstring(str1，str2):
    print (str1)
    return
- 
-# 调用 printme 函数，不加参数会报错
-printme("1","2")
-printme("2","1")
+
+printstring("1","2")
+printstring("2","1")
 printme()
 ```
 
@@ -68,15 +65,13 @@ printme()
 有时候为了更加直观，我们会把定义的函数中的参数当作关键字，进行关键字传参。这时不能漏传参数，但是传递参数的顺序可以不用按照函数中定义的顺序来传递，因为这时参数的传递已经有了明确的指向。
 
 ```python
-#可写函数说明
-def printinfo( name, age ):
-   "打印任何传入的字符串"
-   print ("名字: ", name)
-   print ("年龄: ", age)
+def printNameandAge(name,age):
+   print ("name:",name)
+   print ("age:",age)
    return
- 
-#调用printinfo函数
-printinfo( age=50, name="runoob" )
+
+#调用printNameandAge函数
+printNameandAge(age=50, name="Name")
 ```
 
 #### 默认参数
@@ -84,17 +79,14 @@ printinfo( age=50, name="runoob" )
 在定义函数的参数时我们可以尝试在声明参数阶段就对其进行赋值，这样在没有其他的特殊情况下，调用函数时我们只需要传入没有进行赋值的关键字参数即可。有时我们需要对默认参数进行改变，则在调用函数时直接对默认参数的关键字进行传参即可。
 
 ```python
-#可写函数说明
-def printinfo( name, age = 35 ):
-   "打印任何传入的字符串"
-   print ("名字: ", name)
-   print ("年龄: ", age)
+def printNameandAge( name,age=35):
+   print ("name:", name)
+   print ("age:", age)
    return
  
-#调用printinfo函数
-printinfo( age=50, name="runoob" )
-print ("------------------------")
-printinfo( name="runoob" )
+#调用printNameandAge函数
+printNameandAge(age=50,name="Name")
+printinfo(name="Name")
 ```
 
 #### 不定长参数
@@ -102,15 +94,13 @@ printinfo( name="runoob" )
 有时候我们并不知道要传入的参数究竟有多少元素，这时我们需要专门申明不定长参数来进行处理，这样每次传入不同长度的元素都可以被当做参数交由函数进行处理。
 
 ```python
-# 可写函数说明
-def printinfo( arg1, *vartuple ):
+def printNum(arg1,*vartuple):
    "打印任何传入的参数"
-   print ("输出: ")
+   print ("output:")
    print (arg1)
    print (vartuple)
  
-# 调用printinfo 函数
-printinfo( 70, 60, 50 )
+printNum( 70, 60, 50 )
 ```
 
 ## python匿名函数
@@ -160,9 +150,7 @@ python中的class类主要是面向对象思想的体现，这里不做详细解
 ```python
 class ClassName:
     <statement-1>
-    .
-    .
-    .
+    ...
     <statement-N>
 ```
 
@@ -171,10 +159,7 @@ class ClassName:
 下面例子我们定义了一个固定id的打印hello world的class类，类的名字取做MyClass，并且展示了如何调用类中的方法。
 
 ```python
-#!/usr/bin/python3
- 
-class MyClass:
-    """一个简单的类实例"""
+class MyClass():
     i = 12345
     def f(self):
         return 'hello world'
@@ -199,14 +184,12 @@ def __init__(self):
 init()方法同样也可以承担参数传递的作用，参数通过init() 传递到类的实例化操作上。
 
 ```python
-#!/usr/bin/python3
- 
 class Complex:
     def __init__(self, realpart, imagpart):
         self.r = realpart
         self.i = imagpart
 x = Complex(3.0, -4.5)
-print(x.r, x.i)   # 输出结果：3.0 -4.5
+print(x.r, x.i)   
 ```
 
 ##### self的含义
@@ -216,7 +199,7 @@ print(x.r, x.i)   # 输出结果：3.0 -4.5
 在 Python中，self 是一个惯用的名称，用于表示类的实例（对象）自身。它是一个指向实例的引用，使得类的方法能够访问和操作实例的属性。当你定义一个类，并在类中定义方法时，第一个参数通常被命名为 self，尽管你可以使用其他名称，但强烈建议使用 self，以保持代码的一致性和可读性。
 
 ```python
-class MyClass:
+class MyClass():
     def __init__(self, value):
         self.value = value
 
@@ -227,28 +210,7 @@ class MyClass:
 obj = MyClass(42) 
 
 # 调用实例的方法
-obj.display_value() # 输出 42
-```
-
-```python
-#类定义
-class people:
-    #定义基本属性
-    name = ''
-    age = 0
-    #定义私有属性,私有属性在类外部无法直接进行访问
-    __weight = 0
-    #定义构造方法
-    def __init__(self,n,a,w):
-        self.name = n
-        self.age = a
-        self.__weight = w
-    def speak(self):
-        print("%s 说: 我 %d 岁。" %(self.name,self.age))
- 
-# 实例化类
-p = people('runoob',10,30)
-p.speak()
+obj.display_value()
 ```
 
 在上面的例子中，self 是一个指向类实例的引用，它在 **__init__** 构造函数中用于初始化实例的属性，也在 **display_value** 方法中用于访问实例的属性。通过使用 self，你可以在类的方法中访问和操作实例的属性，从而实现类的行为。
@@ -256,14 +218,11 @@ p.speak()
 #### Class的方法
 
 ```python
-#!/usr/bin/python3
- 
 #类定义
-class people:
+class people():
     #定义基本属性
     name = ''
     age = 0
-    #定义私有属性,私有属性在类外部无法直接进行访问
     __weight = 0
     #定义构造方法
     def __init__(self,n,a,w):
@@ -274,7 +233,7 @@ class people:
         print("%s 说: 我 %d 岁。" %(self.name,self.age))
  
 # 实例化类
-p = people('runoob',10,30)
+p = people('Name',10,30)
 p.speak()
 ```
 
